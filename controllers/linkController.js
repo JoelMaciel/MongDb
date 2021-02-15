@@ -17,7 +17,7 @@ const addLink = async (req, res) => {
         let doc = await link.save()
         res.send("Link Adicionado com sucesso");
     } catch (error) {
-        res.send(error);
+        res.render('index', {error, body: req.body});
 
     }
 

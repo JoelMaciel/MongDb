@@ -7,7 +7,7 @@ router.get('/:title', linkController.redirect)
 
 router.post('/', express.urlencoded({extended:true}), linkController.addLink);
 
-router.get ('/', (req, res)=>  res.render('index'));
+router.get ('/', (req, res)=>  res.render('index',{error: false, body: {}}));
 
 
 

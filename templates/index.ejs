@@ -8,11 +8,14 @@
 </head>
 <body>
     <form action="/" method="POST">
-        <input class="field" name="title" placeholder="Title" required>
-        <input class="field" name="description" placeholder="Description" required>
-        <input class="field" name="url" placeholder="URL" required>
+        <input class="field" name="title" placeholder="Title" required  value="<%=body.title%>">
+        <input class="field" name="description" placeholder="Description" value="<%=body.description%>" >
+        <input class="field" name="url" placeholder="URL" required value="<%=body.url%>">
         <button>Salvar</button>
-    
     </form>
+
+    <%if(error){%>
+        <h3><%=error.message%></h3>
+        <%}%>
 </body>
 </html>
