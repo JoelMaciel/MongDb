@@ -12,26 +12,8 @@ const linkSchema = new mongoose.Schema({
 
 const Link = mongoose.model('Link', linkSchema)
 
-let link = new Link({
-    title: "joelbr",
-    description: "Link para o face",
-    url : "https://twitter.com/progrbr",
-    click: 0,
-})
 
-link.save().then(doc=>{
-    console.log(doc)
-}).catch(err=>{console.log(err)})
 
-// const personSchema = new mongoose.Schema({
-//     name: String,
-//     age: Number
-// })
-// const Person  = mongoose.model('Person', personSchema);
-
-// let person = new Person ({name: "jose", age: 23});
-
-// person.save().then(doc => {console.log(doc)})
 
 mongoose.connect('mongodb://localhost/newlinks',{ 
      useNewUrlParser: true ,
@@ -40,7 +22,20 @@ mongoose.connect('mongodb://localhost/newlinks',{
 let db = mongoose.connection;
 
 db.on("error", ()=> {console.log("houve um erro")});
-db.once("open",()=> {console.log("banco carregado")})
+db.once("open",()=> {console.log("banco carregado")});
+
+
+app.get('/:title', async (req, res) =>{
+    let title = req.params.title;
+
+    try{
+        let doc = await Link.findOne({title})
+        console.log(doc);
+        res.redirect(doc.url);
+    } catch (error){
+        res.send(error);
+    }
+})
 
 
 app.get ('/', (req, res)=>  res.send("hello world"));
