@@ -11,7 +11,8 @@ router.post('/', express.urlencoded({extended:true}), linkController.addLink);
 
 router.get ('/', (req, res)=>  res.render('index',{error: false, body: {}}));
 
-
+router.delete('/:id', linkController.deleteLink)
+router.delete('/' ,express.urlencoded({extended:true}), linkController.deleteLink);
 
 
 
