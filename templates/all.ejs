@@ -13,15 +13,21 @@
         <h1>Links</h1>
         <a href="/add">Adicionar Link</a>
         <%  for(let i=0; i < links.length; i++) {%>
-        <div  class="card" id='<%=links[i]._id%>'>
-            <form method="POST" action="/<%=links[i]._id%>?_method=DELETE">
+    <div  class="card p-3 mb-3" id='<%=links[i]._id%>'>
+         <form class="d-flex align-items-center justify-content-between" method="POST" action="/<%=links[i]._id%>?_method=DELETE">
+            <div class="d-flex flex-column"> 
                 <h2><%=links[i].title%></h2>
                 <div><%=links[i].title%></div>
-                <div><%=links[i].url%></div>
+                <div class="text-muted"><%=links[i].url%></div>
+                <div class="text-info"> Clicks:<%=links[i].click%></div>
+
+            </div>
+            <div class="d-flex flex-column">
                 <input name="id" value='<%=links[i]._id%>' hidden>
-                <button type='submit'>Delete</button>
-                <a href="/edit/<%=links[i]._id%>">Edit</a>
-            </form>
+                <a class=" btn btn-info mb-1" href="/edit/<%=links[i]._id%>">Edit</a>
+                <button class="btn btn-danger" type='submit'>Delete</button>
+            </div>
+        </form>
         </div>
         <%} %>
    </div>
